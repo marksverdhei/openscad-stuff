@@ -3,7 +3,7 @@ include <fan_edges.scad>
 
 module shroud(radius=45.2, n_fans=3) {    
     translate([0, 1, 0])
-    frame(radius=radius);
+    frame(radius=radius, n_fans=n_fans);
     translate([106,0,0])
     mounted_hook();
 
@@ -13,4 +13,4 @@ module shroud(radius=45.2, n_fans=3) {
     mounted_hook();
 }
 
-shroud();
+shroud(n_fans=2);
