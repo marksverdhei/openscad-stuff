@@ -1,7 +1,7 @@
 // Height / width in mm
 fan_size=92;
 
-module fan_edges(radius=46, n_fans=2) {
+module fan_edges(radius=46, n_fans=2, screw_hole_radius=4.5) {
     difference() {
         cube([fan_size, fan_size, 3]);
         
@@ -12,21 +12,21 @@ module fan_edges(radius=46, n_fans=2) {
         // Small cylinders at each corner
         for (x = [6, fan_size-6], y = [6, fan_size-6]) {
             translate([x, y, -1])
-                cylinder(h=10, r=4.5);
+                cylinder(h=10, r=screw_hole_radius);
         }
     }
 }
 
-module repeated_fan_edges(radius=46, n_fans=2) {
+module repeated_fan_edges(radius=46, n_fans=2, screw_hole_radius=4.5) {
     for (i = [0:n_fans-1]) {
         translate([i * fan_size, 0, 0])
-            fan_edges(radius=radius);
+            fan_edges(radius=radius, screw_hole_radius=screw_hole_radius);
     }
 }
 
 // Call the module to render it
 // repeated_fan_edges(radius=49);
-module frame(radius=46, n_fans=2) {
+module frame(radius=46, n_fans=2, screw_hole_radius=4.5) {
     length = 100 * n_fans - 5;
 
     difference() {
@@ -42,10 +42,10 @@ module frame(radius=46, n_fans=2) {
             cube([3*fan_size, fan_size, 20]);
     }
     translate([(length - n_fans*fan_size) / 2, (100 - fan_size) / 2, 14])
-      repeated_fan_edges(radius=radius, n_fans=n_fans);
+      repeated_fan_edges(radius=radius, n_fans=n_fans, screw_hole_radius=screw_hole_radius);
     
 }
 
-frame(n_fans=3);
+frame(n_fans=3, screw_hole_radius=3);
 // Render the frame with cutouts
 // frame(radius=45.2);
