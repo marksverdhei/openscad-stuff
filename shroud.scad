@@ -1,8 +1,7 @@
 include <mounted_hook.scad>
 include <fan_edges.scad>
 
-// frame();
-module shroud(radius=45.2) {    
+module shroud(radius=45.2, n_fans=3) {    
     translate([0, 1, 0])
     frame(radius=radius);
     translate([106,0,0])
