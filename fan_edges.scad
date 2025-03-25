@@ -1,7 +1,7 @@
 // Height / width in mm
 fan_size=92;
 
-module fan_edges(radius=45, screw_hole_radius=2, hole_offset=3) {
+module fan_edges(radius=44, screw_hole_radius=2.2, hole_offset=5) {
     difference() {
         cube([fan_size, fan_size, 3]);
         
@@ -17,14 +17,14 @@ module fan_edges(radius=45, screw_hole_radius=2, hole_offset=3) {
     }
 }
 
-module repeated_fan_edges(radius=45, n_fans=2, screw_hole_radius=2) {
+module repeated_fan_edges(radius=44, n_fans=2, screw_hole_radius=2) {
     for (i = [0:n_fans-1]) {
         translate([i * fan_size, 0, 0])
             fan_edges(radius=radius, screw_hole_radius=screw_hole_radius);
     }
 }
 
-module frame(radius=45, n_fans=2, screw_hole_radius=2) {
+module frame(radius=44, n_fans=2, screw_hole_radius=2.2) {
     length = 100 * n_fans - 5;
 
     difference() {
